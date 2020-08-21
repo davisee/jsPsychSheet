@@ -4,29 +4,31 @@
     <title>My experiment</title>
     <base target="_top">
     <!-- jsPsych library -->
-    <script src="https://brain2ai.in/jsPsychSheet/jspsych/jspsych.js"></script>
-    <script src="https://brain2ai.in/jsPsychSheet/jspsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="https://brain2ai.in/jsPsychSheet/jspsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsych/css/jspsych.css">
+    <script src="https://davisee.github.io/jsPsychSheet/jspsych/jspsych.js"></script>
+    <script src="https://davisee.github.io/jsPsychSheet/jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://davisee.github.io/jsPsychSheet/jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <link rel="stylesheet" href="https://davisee.github.io/jsPsychSheet/jspsych/css/jspsych.css">
 
     <!-- jsPsychSheet library -->
-    <script src="https://brain2ai.in/jsPsychSheet/jspsychsheet.js"></script>
-    <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsychsheet.css">
+    <script src="https://davisee.github.io/jsPsychSheet/jspsychsheet.js"></script>
+    <link rel="stylesheet" href="https://davisee.github.io/jsPsychSheet/jspsychsheet.css">
+<style>
+.trialText {
+  position: absolute;
+  text-align: center;
+  z-index:999;
+}
+.container {
+  position: center;
+}
+</style>
+
   </head>
   <body></body>
   <script>
 
 
-  .trialText {
-    position: absolute;
-    left: 47%;
-    top: 50%;
-    text-align: center;
-    z-index:999;
-  }
-  .container {
-    position: center;
-  }
+
 
 
   /* create timeline */
@@ -41,12 +43,12 @@ timeline.push(welcome_block);
 
 
 
-stimStory1 = {
-  {word:"Sam went into his room to work on some homework assignments for school.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"1", CondNumEn:"1",StoryNumEn:"1"}}
-  {word:"He thought about the report he had to write for his Shakespeare class.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"2", CondNumEn:"1",StoryNumEn:"1"}}
-  {word:"He considered all of his options and decided to write an essay about Macbeth.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"3", CondNumEn:"1",StoryNumEn:"1"}}
+stimStory1 = [
+  {word:"Sam went into his room to work on some homework assignments for school.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"1", CondNumEn:"1",StoryNumEn:"1"}},
+  {word:"He thought about the report he had to write for his Shakespeare class.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"2", CondNumEn:"1",StoryNumEn:"1"}},
+  {word:"He considered all of his options and decided to write an essay about Macbeth.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"3", CondNumEn:"1",StoryNumEn:"1"}},
   {word:"He opened his backpack and took his class notebook out of his bag.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"4", CondNumEn:"1",StoryNumEn:"1"}}];
-}
+
 
 
 
@@ -59,7 +61,7 @@ var trial = {
   choices: [32],    /* 32 = space*/
   data: jsPsych.timelineVariable('data'),
 
-}};
+};
 
 timeline.push(trial)
 
