@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <base target="_top">
+    <!-- jsPsych library -->
+    <script src="https://brain2ai.in/jsPsychSheet/jspsych/jspsych.js"></script>
+    <script src="https://brain2ai.in/jsPsychSheet/jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://brain2ai.in/jsPsychSheet/jspsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsych/css/jspsych.css">
+
+    <!-- jsPsychSheet library -->
+    <script src="https://brain2ai.in/jsPsychSheet/jspsychsheet.js"></script>
+    <link rel="stylesheet" href="https://brain2ai.in/jsPsychSheet/jspsychsheet.css">
+  </head>
+  <body></body>
+  <script>
+
+
+  .trialText {
+    position: absolute;
+    left: 47%;
+    top: 50%;
+    text-align: center;
+    z-index:999;
+  }
+  .container {
+    position: center;
+  }
+
+
+  /* create timeline */
+var timeline = [];
+
+/* define welcome message trial */
+var welcome_block = {
+  type: "html-keyboard-response",
+  stimulus: "Welcome to the experiment. Press any key to begin."
+};
+timeline.push(welcome_block);
+
+
+
+stimStory1 = {
+  {word:"Sam went into his room to work on some homework assignments for school.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"1", CondNumEn:"1",StoryNumEn:"1"}}
+  {word:"He thought about the report he had to write for his Shakespeare class.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"2", CondNumEn:"1",StoryNumEn:"1"}}
+  {word:"He considered all of his options and decided to write an essay about Macbeth.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"3", CondNumEn:"1",StoryNumEn:"1"}}
+  {word:"He opened his backpack and took his class notebook out of his bag.", data: {testphase: "encoding", condition:"NaN", LineNumEm:"4", CondNumEn:"1",StoryNumEn:"1"}}];
+}
+
+
+
+var trial = {
+  type: 'html-keyboard-response', /* This is a plugin I adjusted that keeps the stimulus up for the stim duration, regardless of reponse, but allows response to move on if its after the duration*/
+  stimulus: function(){
+    var html='<div class = "trialText">'+jsPsych.timelineVariable('word', true)+'</div></div>';
+    return html;
+},
+  choices: [32],    /* 32 = space*/
+  data: jsPsych.timelineVariable('data'),
+
+}};
+
+timeline.push(trial)
+
+/* start the experiment */
+jsPsych.init({
+  timeline: timeline,
+  show_progress_bar: true,
+  on_finish: function() {
+      jsPsychSheet.uploadData(jsPsych.data.get().csv());
+  }
+});
+</script>
+</html>
